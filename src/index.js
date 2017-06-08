@@ -47,13 +47,13 @@ function buildResponse(sessionAttributes, speechletResponse) {
 function getWelcomeResponse(callback) {
     // If we wanted to initialize the session to have some attributes we could add those here.
     const sessionAttributes = {};
-    const cardTitle = 'Sassy Shakespeare';
-    const speechOutput = 'Welcome to the Sassy Shakespeare skill. ' +
-        'Ask for an insult by saying, give me an insult please.';
+    const cardTitle = 'DnD NameKeeper';
+    const speechOutput = 'Hello there! ' +
+        'If you\'re looking for the name of someone, you can try asking me.';
     // If the user either does not reply to the welcome message or says something that is not
     // understood, they will be prompted again with this text.
-    const repromptText = 'Ask me for an insult by saying, ' +
-        'give me an insult please';
+    const repromptText = 'Try asking me for a name, like, ' +
+        'give me a male dwarf name.';
     const shouldEndSession = false;
 
     callback(sessionAttributes,
@@ -74,86 +74,44 @@ function handleSessionEndRequest(callback) {
 }
 
 
-/*
-function createFavoriteColorAttributes(favoriteColor) {
-    return {
-        favoriteColor,
-    };
+function buildRandomName(gender, race) {
+
+    //init arrays of names
+    let humanMale = ['Anlow','Arando','Bram','Cale','Dalkon','Daylen','Dodd','Dungarth','Dyrk','Eandro','Falken','Feck','Fenton','Gryphero','Hagar','Jeras','Krynt','Lavant','Leyten','Madian','Malfier','Markus','Meklan','Namen','Navaren','Nerle','Nilus','Ningyan','Norris','Quentin','Semil','Sevenson','Steveren','Talfen','Tamond','Taran','Tavon','Tegan','Vanan' ,'Vincent'];
+
+    let generatedName = '';
+
+    //do the thing
+
+
+    return generatedName;
+
 }
-*/
 
 /**
  * Sets the color in the session and prepares the speech to reply to the user.
  */
 
-function generateAnInsult(intent, session, callback) {
+function generateName(intent, session, callback) {
     const cardTitle = intent.name;
 
-    let repromptText = "Didn't you hear me? Ask for another insult by saying, give me an insult.";
+    let repromptText = "Lot's of strangers pass through the Inn. Ask for a name by giving me a race and a gender.";
     let sessionAttributes = {}; //probably dont need this
     const shouldEndSession = false;
     let speechOutput = '';
 
-    speechOutput = 'Crusty botch of nature';
-    callback(sessionAttributes,
-         buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+    let genderInput = intent.slots.Gender.value;
+    let raceInput = intent.slots.Race.value;
+
+    let generatedName = buildRandomName(genderInput, raceInput);
+
+    speechOutput = generatedName;
+
+    callback(sessionAttributes, buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+
 
 }
 
-
-/*
-function setColorInSession(intent, session, callback) {
-    const cardTitle = intent.name;
-    const favoriteColorSlot = intent.slots.Color;
-    let repromptText = '';
-    let sessionAttributes = {};
-    const shouldEndSession = false;
-    let speechOutput = '';
-
-    if (favoriteColorSlot) {
-        const favoriteColor = favoriteColorSlot.value;
-        sessionAttributes = createFavoriteColorAttributes(favoriteColor);
-        speechOutput = `I now know your favorite color is ${favoriteColor}. You can ask me ` +
-            "your favorite color by saying, what's my favorite color?";
-        repromptText = "You can ask me your favorite color by saying, what's my favorite color?";
-    } else {
-        speechOutput = "I'm not sure what your favorite color is. Please try again.";
-        repromptText = "I'm not sure what your favorite color is. You can tell me your " +
-            'favorite color by saying, my favorite color is red';
-    }
-
-    callback(sessionAttributes,
-         buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
-}
-*/
-
-/*
-function getColorFromSession(intent, session, callback) {
-    let favoriteColor;
-    const repromptText = null;
-    const sessionAttributes = {};
-    let shouldEndSession = false;
-    let speechOutput = '';
-
-    if (session.attributes) {
-        favoriteColor = session.attributes.favoriteColor;
-    }
-
-    if (favoriteColor) {
-        speechOutput = `Your favorite color is ${favoriteColor}. Goodbye.`;
-        shouldEndSession = true;
-    } else {
-        speechOutput = "I'm not sure what your favorite color is, you can say, my favorite color " +
-            ' is red';
-    }
-
-    // Setting repromptText to null signifies that we do not want to reprompt the user.
-    // If the user does not respond or says something that is not understood, the session
-    // will end.
-    callback(sessionAttributes,
-         buildSpeechletResponse(intent.name, speechOutput, repromptText, shouldEndSession));
-}
-*/
 
 // --------------- Events -----------------------
 
@@ -187,9 +145,9 @@ function onIntent(intentRequest, session, callback) {
 
 
     // Dispatch to your skill's intent handlers
-    if (intentName === 'InsultIntent') {
+    if (intentName === 'GenerateNameIntent') {
         //setColorInSession(intent, session, callback);
-        generateAnInsult(intent, session, callback);
+        generateName(intent, session, callback);
 
     } else if (intentName === 'AMAZON.HelpIntent') {
         getWelcomeResponse(callback);

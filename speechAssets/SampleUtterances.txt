@@ -1,2 +1,1 @@
-InsultIntent insult {Person}
-InsultIntent give me an insult
+GenerateNameIntent give me a {Gender} {Race} name.

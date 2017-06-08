@@ -1,7 +1,17 @@
 {
   "intents": [
     {
-      "intent": "InsultIntent"
+      "intent": "GenerateNameIntent",
+      "slots": [
+        {
+          "name": "Race",
+          "type": "LIST_OF_RACES"
+        },
+        {
+          "name": "Gender",
+          "type": "GENDERS"
+        }
+      ]
     },
     {
       "intent": "AMAZON.RepeatIntent"
