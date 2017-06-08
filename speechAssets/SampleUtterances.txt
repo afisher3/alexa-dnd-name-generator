@@ -1,0 +1,2 @@
+InsultIntent insult {Person}
+InsultIntent give me an insult
