@@ -1,0 +1,44 @@
+Design how the DND name generator will work
+
+++++++++++++++++Design++++++++++++++++++++++
+
+
+Open NameKeeper
+"Hello! welcome to the inn. If you're looking for the name of a someone, you can try asking me."
+
+Give me a male dwarf name
+
+"Alexa. Ask NameKeeper for a {male} {human} name."
+
+++++++++++++++++++++++++++++++++++++++++++++
+
+
+[] open the app and randomly generate a male dwarf name every time
+[x] accept a user utterance with two input parameters, gender and race
+	[x] make those input parameters enums
+	[] handle an exception if the user input doesnt fit known values for the enum
+	[] allow the user to omit values
+	
+
+
+
+
+
+
+
+
+
+====Future features=======
+"What races are supported?"
+"Give me a random name"
+
+"Give me a random character"
+
+
+"Give me a random foe"
+
+"Give me a random Inn name"
+
+
+
+==========================

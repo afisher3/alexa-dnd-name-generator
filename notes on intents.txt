@@ -1,0 +1,44 @@
+Alexa learnings:
+
+Scripting
+Ask <invocation name> <connecting word> <some action>
+
+  NameKeeper:
+  Ask the <NameKeeper> <FOR> <a male dwarf name>
+  Ask the <NameKeeper> <TO> <give me male dwarf name>
+  Ask the <NameKeeper> <TO> <make up a male dwarf name>
+
+
+  LoveReinforcer:
+  Ask <invocation name> <connecting word> <some action>
+
+  Ask <LoveReinforcer> <How much am I loved?>
+  Ask <LoveReinforcer> <to tell me how much i am loved>
+  Ask <LoveReinforcer> <How much does Person love Person?>
+  Ask <LoveReinforcer> <How much does Person love me?>
+
+
+
+
+Create sample utterances for Noun, Verb, Questions
+
+
+
+
+
+LaunchIntent:
+
+
+The Recommended Approach:
+
+1. Purpose and Scope
+  Purpose: Someone is feeling sad. They are down about love.
+  They fire off a quick verbal message which stimulates their brain
+  They receive an affirmation that makes them smile. That triggers a release of serotonin
+
+Scope:
+  User can ask for an affirmation (self)
+  User can ask to give an affirmation to someone else (self to other)
+  User can ask for an affirmation about two other people (other to other)
+
+Give a name
